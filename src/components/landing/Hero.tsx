@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
+import { AuroraBackground } from "@/components/ui/aurora-background";
 import { z } from "zod";
 
 const emailSchema = z.string().trim().email({ message: "Please enter a valid email address" });
@@ -38,30 +40,51 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center pt-16 pb-20 px-6">
-      <div className="container mx-auto">
+    <AuroraBackground className="min-h-screen pt-16 pb-20 px-6">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="container mx-auto relative z-10"
+      >
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left Content */}
           <div className="text-center lg:text-left space-y-8">
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-tight">
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-tight"
+              >
                 Your Personal
                 <br />
                 <span className="text-primary">AI Stylist</span>
-              </h1>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-lg mx-auto lg:mx-0">
+              </motion.h1>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-lg md:text-xl text-muted-foreground max-w-lg mx-auto lg:mx-0"
+              >
                 Discover your unique style with Kibbe body type analysis, 
                 organize your wardrobe, and get personalized outfit recommendations.
-              </p>
+              </motion.p>
             </div>
 
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto lg:mx-0">
+            <motion.form 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              onSubmit={handleSubmit} 
+              className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto lg:mx-0"
+            >
               <Input
                 type="email"
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 h-12 bg-card border-border"
+                className="flex-1 h-12 bg-card/80 backdrop-blur-sm border-border"
               />
               <Button 
                 type="submit" 
@@ -71,15 +94,25 @@ const Hero = () => {
               >
                 {isLoading ? "Joining..." : "Join Waitlist"}
               </Button>
-            </form>
+            </motion.form>
 
-            <p className="text-sm text-muted-foreground">
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="text-sm text-muted-foreground"
+            >
               Join 2,500+ style enthusiasts already on the waitlist
-            </p>
+            </motion.p>
           </div>
 
           {/* Right - Phone Mockup */}
-          <div className="flex justify-center lg:justify-end">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="flex justify-center lg:justify-end"
+          >
             <div className="relative">
               {/* Phone Frame */}
               <div className="relative w-[280px] h-[580px] bg-foreground rounded-[3rem] p-3 shadow-2xl">
@@ -117,10 +150,10 @@ const Hero = () => {
               <div className="absolute -top-8 -right-8 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
               <div className="absolute -bottom-8 -left-8 w-40 h-40 bg-accent/50 rounded-full blur-3xl" />
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
-    </section>
+      </motion.div>
+    </AuroraBackground>
   );
 };
 
