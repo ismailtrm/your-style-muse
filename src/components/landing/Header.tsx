@@ -1,50 +1,36 @@
-import { Button } from "@/components/ui/button";
+import { FloatingNav } from "@/components/ui/floating-navbar";
+import { Home, Sparkles, Zap } from "lucide-react";
 
 const Header = () => {
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    element?.scrollIntoView({ behavior: "smooth" });
-  };
+  const navItems = [
+    {
+      name: "Features",
+      link: "#features",
+      icon: <Sparkles className="h-4 w-4" />,
+    },
+    {
+      name: "How It Works",
+      link: "#how-it-works",
+      icon: <Zap className="h-4 w-4" />,
+    },
+  ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="container mx-auto px-6 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <span className="text-xl font-semibold tracking-tight text-foreground">
-            AI-Stylist
-          </span>
+    <>
+      {/* Static header for top of page */}
+      <header className="absolute top-0 left-0 right-0 z-40 bg-transparent">
+        <div className="container mx-auto px-6 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="text-xl font-semibold tracking-tight text-foreground">
+              AI-Stylist
+            </span>
+          </div>
         </div>
-        
-        <nav className="hidden md:flex items-center gap-8">
-          <button 
-            onClick={() => scrollToSection("features")}
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Features
-          </button>
-          <button 
-            onClick={() => scrollToSection("how-it-works")}
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            How It Works
-          </button>
-          <Button 
-            onClick={() => scrollToSection("waitlist")}
-            size="sm"
-          >
-            Join Waitlist
-          </Button>
-        </nav>
+      </header>
 
-        <Button 
-          onClick={() => scrollToSection("waitlist")}
-          size="sm"
-          className="md:hidden"
-        >
-          Join Waitlist
-        </Button>
-      </div>
-    </header>
+      {/* Floating nav that appears on scroll */}
+      <FloatingNav navItems={navItems} />
+    </>
   );
 };
 
