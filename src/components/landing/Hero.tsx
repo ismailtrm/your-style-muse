@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
 import { AuroraBackground } from "@/components/ui/aurora-background";
+import { SplineScene } from "@/components/ui/splite";
 import { z } from "zod";
 
 const emailSchema = z.string().trim().email({ message: "Please enter a valid email address" });
@@ -106,50 +107,17 @@ const Hero = () => {
             </motion.p>
           </div>
 
-          {/* Right - Phone Mockup */}
+          {/* Right - 3D Robot Mannequin */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex justify-center lg:justify-end"
+            className="flex justify-center lg:justify-end h-[500px] lg:h-[600px]"
           >
-            <div className="relative">
-              {/* Phone Frame */}
-              <div className="relative w-[280px] h-[580px] bg-foreground rounded-[3rem] p-3 shadow-2xl">
-                <div className="absolute top-8 left-1/2 -translate-x-1/2 w-20 h-6 bg-foreground rounded-full z-10" />
-                <div className="w-full h-full bg-card rounded-[2.5rem] overflow-hidden">
-                  {/* Mock App Screen */}
-                  <div className="p-6 space-y-6">
-                    <div className="text-center pt-8">
-                      <p className="text-xs text-muted-foreground uppercase tracking-wider">Your Style Profile</p>
-                      <h3 className="text-lg font-semibold mt-2">Soft Natural</h3>
-                    </div>
-                    
-                    <div className="space-y-3">
-                      <div className="bg-accent rounded-xl p-4">
-                        <p className="text-xs text-muted-foreground">Today's Outfit</p>
-                        <p className="text-sm font-medium mt-1">Casual Chic Look</p>
-                      </div>
-                      
-                      <div className="grid grid-cols-3 gap-2">
-                        {[1, 2, 3].map((i) => (
-                          <div key={i} className="aspect-square bg-secondary rounded-lg" />
-                        ))}
-                      </div>
-                      
-                      <div className="bg-accent rounded-xl p-4">
-                        <p className="text-xs text-muted-foreground">Wardrobe Items</p>
-                        <p className="text-2xl font-bold mt-1">48</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Decorative Elements */}
-              <div className="absolute -top-8 -right-8 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
-              <div className="absolute -bottom-8 -left-8 w-40 h-40 bg-accent/50 rounded-full blur-3xl" />
-            </div>
+            <SplineScene 
+              scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+              className="w-full h-full"
+            />
           </motion.div>
         </div>
       </motion.div>
